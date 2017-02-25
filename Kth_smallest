@@ -1,0 +1,14 @@
+import math
+import random
+from insertion_sort import insertion_sort
+
+def Select(A, k):
+    i = floor(A / 5)
+    grp_arry = []
+    while(i > 0):
+        if i == 1:
+            grp_arry[i] = (len(a) % 5)
+
+
+        # divide the n elements of A into floor(n / 5) of 5 elements each
+        # and at most one group made up of the remaining (n mod 5) elements
