@@ -1,14 +1,55 @@
 import math
 import random
-from insertion_sort import insertion_sort
+from insertion_sort import insertion_sort_part
 
-def Select(A, k):
-    i = floor(A / 5)
-    grp_arry = []
-    while(i > 0):
-        if i == 1:
-            grp_arry[i] = (len(a) % 5)
+# def Select(A, k):
+#     medians = []
+#     rem_median  = (len(list) % 5)
+#     i = 0
+#     while(i < math.floor(len(list) // 5)):
+#         insertion_sort_part(list, (5 * (i)), (5 * (i+1)))
+#         medians.append(list[(i * 5) + 2])
+#         i = i + 1
+#     insertion_sort_part(list, len(list)-(len(list)%5), len(list))
+#
+#     if( rem_median % 2 == 1):
+#         medians.append(list[(len(list)-1) - math.floor(rem_median / 2)])
+#     elif( rem_median != 0):
+#         medians.append(list[(len(list)-1) - (rem_median // 2) + 1])
+#
+#     insertion_sort(medians)
+#     if( len(medians) % 2 == 1):
+#         x = medians[math.floor(len(medians) / 2)]
+#         i = math.floor(len(medians) / 2) + 1
+#     else:
+#         x = medians[(len(medians) // 2) + 1]
+#         i = (len(medians) // 2)
+#
+#     part_mod(medians, )
 
+def k_smallest(list, l, r, k):
+    if((k > 0) & (k <= r - l + 1)):
+        pos = partition(list, l , r)
 
-        # divide the n elements of A into floor(n / 5) of 5 elements each
-        # and at most one group made up of the remaining (n mod 5) elements
+        if(pos-l == k - 1):
+            return list[pos]
+
+        if(pos - l > k - 1):
+            return k_smallest(list, l, pos-1,k)
+
+        return k_smallest(list, pos+1, r, k-pos+l-1)
+
+    return 0
+
+def partition(list, p, r):
+    x = list[r]
+    i = p - 1
+    for jay in range(p, r):
+        if(list[jay] <= x):
+            i = i + 1
+            list[i], list[jay] = list[jay], list[i]
+    swap list[i + 1], list[r]
+    return i + 1
+
+array = [12, 3, 5, 7, 4, 19, 26]
+print(k_smallest(array, 0, len(array) - 1, 3))
