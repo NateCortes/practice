@@ -1,0 +1,26 @@
+int FindMergeNode(Node *headA, Node *headB)
+{
+    std::set<Node*> sackA, sackB;
+    
+    while( headA || headB){
+        if( headA){
+            if( sackB.find( headA)){
+               return headA->data; 
+            }
+            sackA.insert( headA);
+            headA = headA->next;
+        }
+    
+        if( headB{
+            if( sackA.find( headB)){
+               return headB->data; 
+            }
+            sackB.insert( headB;
+            headB = headB->next;
+        }
+    }
+            
+    return 0;
+    // Complete this function
+    // Do not write the main method. 
+}
