@@ -1,0 +1,63 @@
+#include "queue.h"
+
+OSqueue::OSqueue(){
+  std::cout<<"making a queue"<<std::endl;
+  head = NULL;
+  tail = NULL;
+}
+
+void OSqueue::enqueue( element* add){ 
+  if( add){
+    if( head == NULL && size == 0){
+      head = tail = add;
+      head->next = tail;
+      head->prev = tail;
+    }else{
+      add->next = head;
+      add->prev = tail;
+      tail->next = add;
+      head->prev = add;
+      tail = add;
+    }
+    size++;
+  }  
+}
+
+void OSqueue::dequeue( ){
+  if( head != NULL && size > 0){
+    struct element* temp = head;
+
+    head->prev->next = head->next;
+    head = head->next;
+    head->prev = tail;
+    
+    std::cout<<temp->data<<std::endl;
+
+    free( temp);
+  }else{
+    std::cout<<" queue empty"<<std::endl;
+  }
+}
+
+void OSqueue::print( ){
+  struct element* point = head;
+  std::cout<< "size: "<< size<<std::endl;
+  if( head){
+    std::cout<<"head element: "<<head->data<<std::endl;
+  }
+  std::cout<<"[ ";
+  if( point){
+    while( point != tail){
+      std::cout<<point->data<<" ";
+      point = point->next;
+    }
+    if( point->data){
+      std::cout<< point->data<<" ";
+    }
+  }
+  std::cout<<"]"<<std::endl;
+}
+
+int OSqueue::size_of( ){
+  return size;
+}
