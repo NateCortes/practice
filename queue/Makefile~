@@ -1,5 +1,5 @@
 CC = g++ 
-OBJECTS = OSqueue.o queue.o
+OBJECTS = OStesting.o queue.o
 
 %.o : %.c
 	$(CC) -c $<

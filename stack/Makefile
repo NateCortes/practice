@@ -1,5 +1,5 @@
-CC = g++ 
-OBJECTS = OStesting.o queue.o
+CC = g++
+OBJECTS = Stacktesting.o stack.o
 
 %.o : %.c
 	$(CC) -c $<
@@ -7,9 +7,10 @@ OBJECTS = OStesting.o queue.o
 run : $(OBJECTS)
 	$(CC) -o $@ $^
 	rm *.o
-	./run
+	./$@
+
 clean: 
 	rm *.o
 
-cleanALL: 
-	rm *.o run;
+cleanALL:
+	rm *.o
