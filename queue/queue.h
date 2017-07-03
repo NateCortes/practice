@@ -17,6 +17,7 @@ class OSqueue{
   void dequeue();
   void print();
   int size_of();
+  void rotate( int);
   
 };
 

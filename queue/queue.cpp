@@ -48,6 +48,24 @@ void OSqueue::dequeue( ){
   }
 }
 
+void OSqueue::rotate( int dir){
+  switch( dir){
+  case 0:
+    //rotate queue once to the right
+    head = head->prev;
+    tail = tail->prev;
+    break;
+  case 1:
+    //rotate queue once to the left
+    head = head->next;
+    tail = tail->next;
+    break;
+  default:
+    std::cout<<"you fucked up;function takes only 1 or 0 as input"<<std::endl;
+
+  }
+}
+
 void OSqueue::print( ){
   //prints element data in a bracketed array format
   struct element* point = head;
