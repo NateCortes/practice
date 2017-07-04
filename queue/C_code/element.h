@@ -1,15 +1,12 @@
-#ifndef ELEMENT_H
-#define ELEMENT_H
+#ifndef TCB_t_H
+#define TCB_t_H
 //#include <stdio.h>
 
-struct element{
+typedef struct TCB_t{
   int data;
 
-  struct element* next;
-  struct element* prev;
-
-  // element(){ printf("elem created");};
-  //~element(){ printf( "elem destroyed");};
+  struct TCB_t* next;
+  struct TCB_t* prev;
 
 };
 

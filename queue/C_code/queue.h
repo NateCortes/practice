@@ -5,14 +5,16 @@
 #include "element.h"
 
 struct queue{
-  struct element* head;
-  struct element* tail;
+  struct TCB_t* head;
+  struct TCB_t* tail;
   int size;
 };
 
 struct queue* init_queue();
-struct element* dequeue( struct queue*);
-void enqueue( struct queue* ,  struct element* );
+struct TCB_t* dequeue( struct queue*);
+void enqueue( struct queue* ,  struct TCB_t* );
+void rotate( struct queue*, int);
 void print_q( struct queue*);
+struct TCB_t* new_item();
 
 #endif
