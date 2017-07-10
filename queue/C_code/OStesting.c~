@@ -1,0 +1,36 @@
+#include <stdio.h> 
+#include <string.h>
+#include <signal.h>
+#include "threads.h"
+
+void func();
+static struct queue *run_q;
+
+int main(){
+  
+  printf( "size of stack_t: %d bytes\n", sizeof( stack_t));
+  stack_t *point = ( stack_t) malloc( sizeof( stack_t));
+
+  run_q = init_queue();
+  printf( "address of run_q: %d\n", run_q);
+
+  printf( "\n|------------\n");
+  start_thread( func);
+  printf( "\n------------|\n");
+
+  sect_wrap( run);
+
+  sect_wrap( yeild);
+  
+   return 0;
+}
+
+void func( ){
+  printf( "it's a function...\n");
+}
+
+void sect_wrap( void (*func)()){
+  printf( "\n|---------------\n");
+  func();
+  printf( "\n---------------|\n");
+}

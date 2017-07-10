@@ -1,42 +1,48 @@
 #include <stdio.h> 
-#include "queue.h"
+#include <string.h>
+#include <signal.h>
+
+void func1();
+void func2();
+void sect_wrap( void (*)());
+static struct queue *run_q;
+
+#include "threads.h"
 
 int main(){
-
-  int ite = 9;
-
-   struct queue *qu = init_queue(); 
-   
-   print_q( qu);
   
-   int i=0;
-   for( i;i < 5; i++){
-     struct TCB_t *a = new_item();
-     a->data = i+1;
+  struct TCB_t *mcarthur = new_item();
+  struct TCB_t *jackson = new_item();
+  //test_TCB( mcarthur);
+  //init_TCB( jackson, func1, MEMORY, SIGSTKSZ);
 
-     enqueue( qu, a);
+  run_q = init_queue();
+  printf( "address of run_q: %d\n", run_q);
 
-     print_q( qu);
-   }
+  printf( "\n|------------\n");
+  start_thread( func1);
+  print_q( run_q);
+  printf( "\n------------|\n");
 
-   i=0;
-   for( i; i<3;i++){
-     rotate( qu, 0);
-     print_q( qu);
-   }
+  sect_wrap( run);
 
-   struct TCB_t* point;
-
-   i = 0;
-   for( i; i< 5; i++){
-     free( qu->head);
-     point = dequeue( qu);
-     print_q( qu);
-     printf( "removed: %d\n", point); 
-     //free( point);
-     printf( "removed: %d\n", point->data);
-     
-   } 
-
+  sect_wrap( yeild);
+  
    return 0;
+}
+
+void func1( ){
+  //dummy function 1 for use with context switching
+  printf( "it's just a function...\n");
+}
+
+void func2( ){
+  //dummy function 2 for use with context switching
+  printf( "...it's a function");
+}
+
+void sect_wrap( void (*func)()){
+  printf( "\n|---------------\n");
+  func();
+  printf( "\n---------------|\n");
 }

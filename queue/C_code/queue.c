@@ -13,7 +13,7 @@ struct TCB_t* new_item( ){
   struct TCB_t* pass = malloc( sizeof( struct TCB_t));
   pass->next = NULL;
   pass->prev = NULL;
-  pass->data = NULL;
+  pass->data = 0;
 
   return pass;
 }

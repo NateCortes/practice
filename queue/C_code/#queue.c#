@@ -1,21 +1,4 @@
-#ifndef QUEUE_H
-#define QUEUE_H
-
-#include <stdio.h>
-#include "tcb.h"
-
-struct queue{
-  struct TCB_t* head;
-  struct TCB_t* tail;
-  int size;
-};
-
-struct TCB_t* new_item();
-struct queue* init_queue();
-void print_q( struct queue*);
-void rotate( struct queue*, int);
-struct TCB_t* dequeue( struct queue*);
-void enqueue( struct queue* ,  struct TCB_t* );
+#include "queue.h"
 
 struct queue* init_queue(){
   struct queue* q = (struct queue*) malloc( sizeof( struct queue));
@@ -30,7 +13,8 @@ struct TCB_t* new_item( ){
   struct TCB_t* pass = malloc( sizeof( struct TCB_t));
   pass->next = NULL;
   pass->prev = NULL;
-  pass->data = 0;
+
+  pass->data = NULL;
 
   return pass;
 }
@@ -111,4 +95,3 @@ void print_q( struct queue* qu){
   } 
   printf( "]\n");
 }
-#endif

@@ -1,5 +1,5 @@
 CC = gcc
-OBJECTS = OStesting.o queue.o
+OBJECTS = OStesting.o 
 
 %.o : %.c
 	$(CC) -c $<

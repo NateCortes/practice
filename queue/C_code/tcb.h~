@@ -1,13 +1,10 @@
-#ifndef TCB_t_H
-#define TCB_t_H
+#ifndef TCB_H
+#define TCB_H
 //#include <stdio.h>
 #include <ucontext.h>
 ////////////////////////
-#include <string.h>
+//#include <string.h>
 ////////////////////////
-
-
-//void init_TCB( TCB_t*, void*, void*, int);
 
 typedef struct TCB_t{
   int data;
@@ -17,8 +14,10 @@ typedef struct TCB_t{
   struct TCB_t* prev;
 
 } TCB_t;
-/*
-void init_TCB ( TCB_t *tcb, void *function, void *stackP, int stack_size){
+
+void init_TCB( TCB_t *tcb, void *function, void *stackP, int stack_size);
+
+void init_TCB( TCB_t *tcb, void *function, void *stackP, int stack_size){
   
   memset( tcb, '\0', sizeof( TCB_t));
   getcontext( &tcb->context);
@@ -26,8 +25,6 @@ void init_TCB ( TCB_t *tcb, void *function, void *stackP, int stack_size){
   tcb->context.uc_stack.ss_sp = stackP;
   tcb->context.uc_stack.ss_size = (size_t) stack_size;
 
-  makecontext( &tcb->context, function, 0);
-  
-  }*/
-
+  makecontext( &tcb->context, function, 0); 
+}
 #endif
