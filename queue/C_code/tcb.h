@@ -4,8 +4,6 @@
 #include <signal.h>
 #include <string.h>
 
-#define MEMORY 1024
-
 typedef struct TCB_t{
   int data;
   ucontext_t    context;
@@ -15,20 +13,9 @@ typedef struct TCB_t{
 
 } TCB_t;
 
-//void init_TCB( TCB_t *tcb, void *function, void *stackP, int stack_size);
-/*
-void test_TCB( TCB_t *tcb){
-  getcontext( &tcb->context);
-  tcb->context.uc_stack.ss_sp = MEMORY;
-  tcb->context.uc_stack.ss_size = SIGSTKSZ;
-  printf( "stack pointer for context: %d\n", tcb->context.uc_stack.ss_sp);
-  printf( "stack size for context: %d\n",(int) tcb->context.uc_stack.ss_size);
- //printf( "%d, %d, %d", tcb.context->ss_sp, tcb.context->ss_size, tcb.context->ss_flags);
-}*/
-
-void init_TCB( TCB_t *tcb, void *function, void *stackP, int stack_size){
-  
+void init_TCB( TCB_t *tcb, void *function, void *stackP, int stack_size){;
   memset( tcb, '\0', sizeof( TCB_t));
+  tcb->data = (int) (rand( NULL) % 1000); //tag identifiying item in queue
   getcontext( &tcb->context);
   
   tcb->context.uc_stack.ss_sp = stackP;

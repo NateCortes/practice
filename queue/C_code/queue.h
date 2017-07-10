@@ -2,6 +2,7 @@
 #define QUEUE_H
 
 #include <stdio.h>
+#include <time.h>
 #include "tcb.h"
 
 struct queue{
@@ -99,7 +100,7 @@ void rotate( struct queue* qu, int dir){
 
 void print_q( struct queue* qu){
   struct TCB_t* point = qu->head;
-  printf( "[ ");
+  printf( "%d elems: [ ", qu->size);
   if( point){
     while( point != qu->tail){
       printf("%d ", point->data);

@@ -4,17 +4,17 @@
 void run();
 void yeild();
 void start_thread( void (*)());
-
+ucontext_t parent;
 void start_thread( void (*func)()){
 
-  //allocate a stack
-  printf( "allocating stack\n");
-  int *stack = (int*) malloc( SIGSTKSZ);
+  //allocate a stack  
+  printf( "allocating stack, ");
+  void *stack = (void*) malloc( SIGSTKSZ);
   //allocate a TCB
-  printf( "creating a tcb\n");
+  printf( "creating a tcb, ");
   struct TCB_t *create = new_item();
   //call init_TCB
-  printf( "initializing tcb\n");
+  printf( "initializing tcb, ");
   init_TCB( create, func, stack, SIGSTKSZ);
   //call addQ
   printf( "adding to ready queue\n");
@@ -22,8 +22,8 @@ void start_thread( void (*func)()){
 }
 
 void run(){
-  ucontext_t parent;
-  printf( "getting context\n");
+  //  ucontext_t parent;
+  printf( "getting context, ");
   getcontext( &parent);
   
   printf( "swapping context\n");
@@ -31,14 +31,16 @@ void run(){
 }
 
 void yeild(){
-  ucontext_t parent;
-  getcontext( &( run_q->head->context));
+  //ucontext_t parent = run_q->head->context;
 
   //rotate queue
-  printf( "rotating queue\n");
+  printf( "rotating queue, ");
   rotate( run_q, 0);
   //swap context
   printf( "swapping context\n");
+  // swapcontext( &parent, &( run_q->head->context));
+  setcontext( &( run_q->head->context));
+  // setcontext( &parent);
 }
 
 
