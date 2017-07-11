@@ -66,8 +66,7 @@ void func2( ){
   //dummy function 2 for use with context switching
   
   clock_t time = clock();
-  printf( "it's just a function...\n");
-
+  
   int i;
   for( i = 1; i< CLOCKS_PER_SEC / 10; i++){   
     print_pong( field);
