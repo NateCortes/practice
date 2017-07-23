@@ -1,0 +1,49 @@
+#ifndef BST_OPS_H
+#define BST_OPS_H
+
+void inorder( struct node* root);
+void preorder( struct node* root);
+void postorder( struct node* root);
+
+//Print Traversals////////////////
+
+void inorder( struct node* root){
+
+  if( root == NULL){
+    return;
+  }
+
+  inorder( root->left);
+  std::cout<<root->data<<std::endl;
+  inorder( root->right);
+
+}
+
+void preorder( struct node* root){
+
+  if( root == NULL){
+    return;
+  }
+
+  preorder( root->left);
+  preorder( root->right);
+  std::cout<<root->data<<std::endl;
+  
+}
+
+void inorder( struct node* root){
+
+  if( root == NULL){
+    return;
+  }
+
+  std::cout<<root->data<<std::endl;
+  postorder( root->left);
+  postorder( root->right);
+
+}
+
+
+/////////////////////////////////
+
+#endif

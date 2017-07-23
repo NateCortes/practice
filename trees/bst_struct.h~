@@ -1,0 +1,24 @@
+#ifndef BST_STRUCT_H
+#define BST_STRUCT_h
+
+struct node* gen_node( int);
+
+struct node{
+  int data;
+  struct node* left, right, parent;
+}
+
+struct BST{
+  struct node* Root;
+}
+
+struct node* gen_node( int data){
+  struct node* pass = (struct node*) malloc( sizeof( struct node));
+
+  pass->data;
+  pass->left = pass->right = pass->parent = NULL;
+
+  return pass;
+}
+
+#endif
