@@ -1,0 +1,20 @@
+#ifndef MORE_BST_H
+#define MORE_BST_H
+
+void delete_tree( struct node*);
+
+void delete_tree( struct node* root){
+
+  if( root == NULL){
+    return;
+  }
+
+  delete_tree( root->left);
+  delete_tree( root->right);
+  delete root;
+
+}
+
+
+
+#endif
