@@ -1,0 +1,25 @@
+#ifndef ROTATIONS_H
+#define ROTATIONS_H
+
+void rotate_left( struct node*);
+void rotate_right( struct node*);
+
+void rotate_left( struct node* node){
+
+  struct node* pnt = node->parent;
+
+  node->parent = pnt->parent;
+  
+  if( node->parent == pnt->parent->left){
+    pnt->parent->left = node;
+  }else{
+    pnt->parent->right = node;
+  }
+
+  pnt->parent = node;
+  pnt->right = node->left;
+  node->left = pnt;
+}
+
+
+#endif

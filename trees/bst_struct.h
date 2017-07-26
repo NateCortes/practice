@@ -5,7 +5,7 @@ struct node* gen_node( int);
 void check_node( struct node*);
 
 struct node{
-  int data;
+  int data, lh, rh;
   struct node *left, *right, *parent;
 };
 

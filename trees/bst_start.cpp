@@ -7,6 +7,11 @@
 #include "bst_trav.h"
 #include "bst_ops.h"
 #include "more_bst.h"
+#include "rotations.h"
+
+struct Tree{
+  struct node* ROOT;
+};
 
 int main(){
   FILE* librarian = fopen( "level_order.txt", "r");
@@ -14,14 +19,23 @@ int main(){
 
   fscanf( librarian, "%i", &read);
   struct node* test_root = gen_node( read);
-  check_node( test_root);
+  struct Tree* balance = ( struct Tree*) malloc( sizeof( struct Tree));
+  insert( test_root, gen_node( 50));
+  insert( test_root, gen_node( 200));
+  insert( test_root, gen_node( 150));
+  insert( test_root, gen_node( 500));
+  insert( test_root, gen_node( 600));
+
   std::cout<<"root address: "<< test_root<<std::endl;
+  
+  /* check_node( test_root);
+  
 
   while( !feof( librarian)){
     fscanf( librarian, "%i", &read);
     //std::cout<< read<<std::endl;
     insert( test_root, gen_node( read));
-  }
+  }*/
   check_node( test_root);
 
   
@@ -30,7 +44,7 @@ int main(){
   int key = 5000;
   check_node( find( test_root, key));
   
-  print_path( test_root, 3700);
+  // print_path( test_root, 3700);
 
   /*
   std::cout<< "removing... "<<std::endl;
@@ -43,14 +57,32 @@ int main(){
   std::cout<< "height of left and right subtrees "<< height( test_root->left)<< ", "<< height( test_root->right)<<std::endl;
 
   // test_root = delete_tree( test_root);
+
+  balance->ROOT = test_root;
+
+  struct node* node200 = find( balance->ROOT, 500);
   
-  travel_wrapper( &inorder, test_root); 
-  travel_wrapper( &preorder, test_root);
-  travel_wrapper( &postorder, test_root);
-  
-  remove( test_root, key);
-  
-  travel_wrapper( &inorder, test_root);
-  
+  check_node( balance->ROOT);
+  check_node( node200);
+  travel_wrapper( &inorder, balance->ROOT); 
+  travel_wrapper( &preorder, balance->ROOT);
+  travel_wrapper( &postorder, balance->ROOT);
+
+  rotate_left( node200, balance->ROOT);
+    
+  check_node( balance->ROOT);
+  check_node( node200);
+  travel_wrapper( &inorder, balance->ROOT); 
+  travel_wrapper( &preorder, balance->ROOT);
+  travel_wrapper( &postorder, balance->ROOT);
+
+  rotate_right( find( balance->ROOT, 200), balance->ROOT);
+
+  check_node( balance->ROOT);
+  check_node( node200);
+  travel_wrapper( &inorder, balance->ROOT); 
+  travel_wrapper( &preorder, balance->ROOT);
+  travel_wrapper( &postorder, balance->ROOT);
+ 
   return 0;
 }

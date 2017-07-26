@@ -57,8 +57,8 @@ void func1( ){
   }
   
   time = clock() - time;
-  program_time += ( (double) time / CLOCKS_PER_SEC * 10);
-  printf( " %.2f seconds\n", ((double) time / CLOCKS_PER_SEC) * 10);
+  program_time += ( (double) time / CLOCKS_PER_SEC * 8.15);
+  printf( " %.2f seconds\n", ((double) time / CLOCKS_PER_SEC) * 8.15);
   sect_wrap( yeild);
 }
 
@@ -77,8 +77,8 @@ void func2( ){
   }
  
   time = clock() - time;
-  program_time += ( (double) time / CLOCKS_PER_SEC * 10);
-  printf( " %.2f seconds\n", ((double) time / CLOCKS_PER_SEC) * 10);
+  program_time += ( (double) time / CLOCKS_PER_SEC * 8.15);
+  printf( " %.2f seconds\n", ((double) time / CLOCKS_PER_SEC) * 8.15);
   
   sect_wrap( yeild);
 }
