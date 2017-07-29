@@ -1,0 +1,19 @@
+#ifndef AVL_OPS_H
+#define AVL_OPS_H
+
+struct node* find( struct node* eon, int val){
+  if( eon == NULL){
+    return eon;
+  }
+  
+  if( val > eon->data){
+    return find( eon->right);
+  }else if( val < eon->data){
+    return find( eon->left);
+  }
+  
+  return eon;
+}
+
+
+#endif

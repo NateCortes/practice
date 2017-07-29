@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+typedef struct pong{
+  char[] field;
+  int loc;
+  int size;
+}pong;
+
+struct pong* init_pong( ){
+  struct pong* new_field = ( struct pong *) malloc( sizeof(struct pong));
+  new_field->loc = 0;
+  new_field->size = 10;
+  new_field->field = (char* ) malloc( 10 * sizeof( char));
+  
+  int i = 0;
+  while( i < 10){
+    if( i == 0){
+     new_field->field[i] = '|';
+    }else{
+      new_field->field[i] = ' '; 
+    }
+    i++;
+  }
+  
+  return new_field;
+}

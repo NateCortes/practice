@@ -1,0 +1,79 @@
+#include <stdio.h> 
+#include <string.h>
+#include <signal.h>
+#include <time.h>
+#include <stdlib.h>
+
+#include "queue.h"
+
+static struct queue *run_q;//ready queue for context swapping
+
+#include "threads.h"
+#include "semaphore.h"
+
+
+void func1();
+void func2();
+/*
+void func3();
+void sect_wrap( void (*)());
+
+struct pong *field; //animation struct for demonstration
+double program_time;//logs runtime
+*/
+
+//#include "pong.h"
+
+int main(){
+  /*
+   V() increments the semaphore, and should be called at the end of a process requiring mutual exclusion
+   P() decrements the semaphore, blocking the queue
+   */
+  struct semaphore* sea = gen_s();
+  
+  init_s( sea, 1);
+
+  printf( "%i\n", sea->val);
+
+
+  return 0;
+}
+
+
+void func1( ){
+  //thread 1 for use with semaphores
+  enqueue( sea->q, 
+  int i = 1;
+  while( i > 0){
+    
+
+  }
+  
+}
+
+void func2( ){
+  //thread 2 used with semaphores
+
+  int i = 1;
+  while( i > 0){
+    
+  }
+
+}
+/*
+void func3( ){
+  //dummy function 3 for use with context switching 
+  clock_t sometime = clock();
+  time( &sometime);
+  printf( "->Current time, %s", ctime( &sometime));
+  printf( "-->Approximate run time: %.2f seconds\n", program_time);
+  yeild();
+}
+
+void sect_wrap( void (*func)()){
+  //section header to visually aid context switch
+  //printf statement seperates the function being called from previous context
+  printf( "\n|---------------\n");
+  func();
+}
+*/

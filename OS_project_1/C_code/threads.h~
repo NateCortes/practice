@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include "queue.h"
+
+
+void run();
+void yeild();
+void start_thread( void (*)());
+
+
+void start_thread( void (*func)()){
+  //allocate a stack
+  printf( "allocating stack");
+  //allocate a TCB
+  printf( "creating a tcb");
+  //call init_TCB
+  printf( "initializing tcb");
+  //call addQ
+  printf( "adding to ready queue");
+}
+
+void run(){
+  ucontext_t parent;
+  getcontext( &parent);
+  swapcontext( &parent, &(run_q->context));
+}
+
+void yeild(){
+  //rotate the Q
+  printf( "rotating queue");
+  //swap context
+  printf( "swapping context");
+}
