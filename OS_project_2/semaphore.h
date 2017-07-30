@@ -23,18 +23,18 @@ void init_s( struct semaphore* shore, int val){
 }
 
 void P( struct semaphore* shore){
-  printf( "decrementing semaphore ");
+  printf( "\ndecrementing semaphore\n");
   shore->val--;
 
   if( shore->val < 0){
     printf( "\rwaiting... \n");
-    enqueue( shore->q, peek( run_q));
+    enqueue( shore->q, dequeue( run_q));
   }
   
 }
 
 void V( struct semaphore* shore){
-  printf( "incrementing semaphore ");
+  printf( "\nincrementing semaphore\n");
   shore->val++;
  
   if( shore->val <= 0){

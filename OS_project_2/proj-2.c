@@ -12,11 +12,10 @@ static struct queue *run_q;//ready queue for context swapping
 #include "semaphore.h"
 
 static struct semaphore* sea;
+static int count;
 
 void func1();
 void func2();
-
-//#include "pong.h"
 
 int main(){
   /*
@@ -25,7 +24,8 @@ int main(){
    */
   run_q = init_queue();
   sea = gen_s();
-  
+  count = 0;
+
   init_s( sea, 1);
 
   printf( "%i\n", sea->val);
@@ -44,11 +44,16 @@ void func1( ){
   int i = 1;
   while( i > 0){
     P( sea);
-
-    printf( "thread 1\n");
+    
+    count++;
+    while( i < 60000){
+      printf( "\rthread 1, count: %i", count);
+      i++;
+    }
+    
+    i = 1;
 
     V( sea);
-
     yeild();
   }
   
@@ -60,11 +65,15 @@ void func2( ){
   int i = 1;
   while( i > 0){
     P( sea);
-
-    printf( "thread 2\n");
-
+    
+    count++;
+    while( i < 60000){
+      printf( "\rthread 2, count: %i", count);
+      i++;
+    }
+    
+    i = 1;
     V( sea);
-
     yeild();
   }
 
