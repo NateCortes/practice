@@ -7,6 +7,7 @@
 #include "bst_trav.h"
 #include "avl_ops.h"
 
+void check_node( struct node*);
 
 int main( ){
   FILE* librarian = fopen( "level_order.txt", "r");
@@ -25,14 +26,31 @@ int main( ){
   travel_wrapper( &inorder, avl->root);
   travel_wrapper( &preorder, avl->root);
   travel_wrapper( &postorder, avl->root);
-  std::cout<< "height of tree: "<< calc_height( avl->root)<<std::endl;
+  std::cout<< "height of tree: "<< calc_height( avl->root)+1<<std::endl;
+  
+  //delete root node
+  avl->root = remove( avl->root, avl->root->data);
+  check_node( avl->root);
+  
+  //delete leaf node
+  avl->root = remove( avl->root, 1);
+  
+  //single child deletion
+  avl->root = remove( avl->root, 3);
 
-  avl->root = remove ( avl->root, 1);
+  //double child deletion
+  avl->root = remove( avl->root, 50);
 
-   travel_wrapper( &inorder, avl->root);
+  delete_avl_tree( avl);
+   
+  travel_wrapper( &inorder, avl->root);
   travel_wrapper( &preorder, avl->root);
   travel_wrapper( &postorder, avl->root);
-  std::cout<< "height of tree: "<< calc_height( avl->root)<<std::endl;
+  std::cout<< "height of tree: "<< calc_height( avl->root)+1<<std::endl;
 
   return 0;
 } 
+
+void check_node( struct node* node){
+  std::cout<<"[ "<<node->data<<" | l:"<< node->left<<" | r:"<< node->right<<" ]"<<std::endl;
+}
