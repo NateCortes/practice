@@ -1,0 +1,41 @@
+#ifndef DISJOINT_SET_H
+#define DISJOINT_SET_H
+
+struct ds_node{
+ 
+  int rank;
+  ds_node* parent;
+};
+
+struct ds_node* make_set(){
+  
+  struct ds_node* pass = ( struct ds_node*) malloc( sizeof( struct ds_node*));
+
+  pass->parent = pass;
+  pass->rank = 0;
+  
+  return pass;
+}
+
+struct ds_node* find_set( struct ds_node* node){
+  if( node->parent != node){ node->parent = find_set( node->parent);}
+  return node;
+}
+
+void merge_set( struct ds_node* n1, struct ds_node* n2){
+  struct ds_node* n1_root = find_set( n1);
+  struct ds_node* n2_root = find_set( n2);
+
+  if( n1_root == n2_root){ return;}
+
+  if( n1_root->rank > n2_root->rank){
+    n2_root->parent = n1_root;
+  }else if( n1_root->rank < n2_root->rank){
+    n1_root->parent = n2_root;
+  }else{
+    n2_root->parent = n1_root;
+    n1_root->rank++;
+  }
+  
+}
+#endif

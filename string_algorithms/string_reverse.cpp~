@@ -1,0 +1,13 @@
+#include <stdlib.h>
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(){
+
+  string phrase = "the clock strikes twelve, and all is well";
+
+  cout<< phrase<<endl;
+  
+  return 0;
+}
